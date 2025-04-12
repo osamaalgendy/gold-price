@@ -6,16 +6,16 @@ import os
 from dotenv import load_dotenv
 from requests.structures import CaseInsensitiveDict
 
-# 1. Load environment variables
+# Load environment variables
 load_dotenv()
 
-# 2. Enable caching (12 hours)
+# Enable caching (12 hours)
 requests_cache.install_cache("gold_cache", expire_after=43200)
 
-# 3. Create FastAPI app
+# Create FastAPI app
 app = FastAPI()
 
-# 4. Enable CORS
+# Enable CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"], 
@@ -24,11 +24,18 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# 5. Get API key
+# Get API key
 API_KEY = os.getenv("METALS_API_KEY")
 
 
-# 6. Endpoint to get gold price
+@app.get("/")
+def read_root():
+    return {"message": "Hello from FastAPI on the cloud!",
+    "developer": "osama algendy",
+    "contact me at":"osamaalgendy@gmail.com"}
+
+
+# Endpoint to get gold price
 @app.get("/gold-price")
 def get_gold_price(currency: str = "SAR", unit: str = "g"):
     if not API_KEY:
