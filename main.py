@@ -9,8 +9,8 @@ from requests.structures import CaseInsensitiveDict
 # 1. Load environment variables
 load_dotenv()
 
-# 2. Enable caching (15 minutes)
-requests_cache.install_cache("gold_cache", expire_after=900000)
+# 2. Enable caching (12 hours)
+requests_cache.install_cache("gold_cache", expire_after=43200)
 
 # 3. Create FastAPI app
 app = FastAPI()
@@ -18,7 +18,7 @@ app = FastAPI()
 # 4. Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Change in production!
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -26,6 +26,7 @@ app.add_middleware(
 
 # 5. Get API key
 API_KEY = os.getenv("METALS_DEV_API_KEY")
+
 
 # 6. Endpoint to get gold price
 @app.get("/gold-price")

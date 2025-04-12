@@ -4,3 +4,4 @@ gunicorn
 python-dotenv
 requests
 requests-cache
+os
