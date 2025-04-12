@@ -25,7 +25,7 @@ app.add_middleware(
 )
 
 # 5. Get API key
-API_KEY = os.getenv("METALS_DEV_API_KEY")
+API_KEY = os.getenv("METALS_API_KEY")
 
 
 # 6. Endpoint to get gold price
