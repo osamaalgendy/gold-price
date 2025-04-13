@@ -64,6 +64,7 @@ def get_gold_price(currency: str = "SAR", unit: str = "g"):
 
         return {
             "price 24 karat": round(price, 2), # price in 24 karat
+            "price 22 karat": round(price * 22/24, 2), # price in 22 karat
             "price 21 karat": round(price * 21/24, 2), # price in 21 karat
             "price 18 karat": round(price * 18/24, 2), # price in 18 karat
             "currency": currency.upper(),
